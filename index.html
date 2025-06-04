@@ -1,13 +1,67 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meine erste Webseite</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Für meine Freundin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Open+Sans&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: #fff0f6;
+      color: #333;
+      text-align: center;
+      margin-top: 80px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      font-family: 'Poppins', sans-serif;
+      color: #d6336c;
+      transition: color 0.3s ease;
+    }
+    h1:hover {
+      color: #ff69b4;
+      cursor: default;
+    }
+    p {
+      font-size: 1.2rem;
+    }
+    .foto {
+      width: 200px;
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(214, 51, 108, 0.3);
+      margin: 20px 0;
+    }
+    .heart {
+      font-size: 3rem;
+      animation: pulse 1.5s infinite;
+      margin: 20px 0;
+    }
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 0.7;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Hallo Welt!</h1>
-  <p>Dies ist meine erste Webseite 🎉</p>
+  <div class="container">
+    <h1>Hallo meine Liebe! 💖</h1>
+    <img src="liebe.jpg" alt="Bild von uns" class="foto" />
+    <p>Ich habe diese Webseite nur für dich gemacht. Schön, dass es dich gibt! 🌸</p>
+    <div class="heart">❤️</div>
+  </div>
 </body>
 </html>
