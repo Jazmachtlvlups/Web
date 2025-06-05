@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zitate für Dich</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-color: #fff0f6;
+      --text-color: #333;
+      --quote-bg: #fce4ec;
+      --btn-bg: #d6336c;
+      --btn-hover-bg: #ff69b4;
+    }
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      text-align: center;
+      padding: 50px 20px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    body.dark {
+      --bg-color: #121212;
+      --text-color: #eee;
+      --quote-bg: #2a2a2a;
+      --btn-bg: #bb86fc;
+      --btn-hover-bg: #985eff;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #d6336c;
+    }
+    blockquote {
+      background-color: var(--quote-bg);
+      border-left: 5px solid #d6336c;
+      font-size: 1.3rem;
+      font-style: italic;
+      margin: 25px auto;
+      max-width: 600px;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(214, 51, 108, 0.2);
+      transition: background-color 0.3s;
+    }
+    .btn-back {
+      display: inline-block;
+      margin-top: 40px;
+      background-color: var(--btn-bg);
+      color: white;
+      padding: 10px 25px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    .btn-back:hover {
+      background-color: var(--btn-hover-bg);
+    }
+    .mode-toggle {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      background: #333;
+      color: white;
+      cursor: pointer;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+  <button class="mode-toggle" onclick="toggleMode()">🌙/☀️</button>
+
+  <h1>💬 Lieblingszitate</h1>
+
+  <blockquote>"Du bist mein Heute und alle meine Morgen." – A. A. Milne</blockquote>
+  <blockquote>"Liebe besteht nicht darin, einander anzusehen, sondern gemeinsam in die gleiche Richtung zu blicken." – Antoine de Saint-Exupéry</blockquote>
+  <blockquote>"Ich liebe dich nicht nur, weil du bist, wie du bist, sondern weil ich bin, wie ich bin, wenn ich bei dir bin." – Roy Croft</blockquote>
+
+  <a href="index.html" class="btn-back">Zurück</a>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    }
+
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark');
+    }
+  </script>
+</body>
+</html>

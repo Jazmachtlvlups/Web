@@ -6,12 +6,23 @@
   <title>Wie lange wir zusammen sind</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Open+Sans&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --bg-color: #fff0f6;
+      --text-color: #333;
+      --box-color: white;
+    }
     body {
       font-family: 'Open Sans', sans-serif;
-      background-color: #fff0f6;
-      color: #333;
+      background-color: var(--bg-color);
+      color: var(--text-color);
       text-align: center;
       margin: 60px 20px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    body.dark {
+      --bg-color: #121212;
+      --text-color: #eee;
+      --box-color: #1e1e1e;
     }
     h1 {
       font-family: 'Poppins', sans-serif;
@@ -35,34 +46,54 @@
     .btn-back:hover {
       background-color: #ff69b4;
     }
+    .mode-toggle {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      background: #333;
+      color: white;
+      cursor: pointer;
+      z-index: 999;
+    }
   </style>
 </head>
 <body>
+  <button class="mode-toggle" onclick="toggleMode()">🌙/☀️</button>
+
   <h1>Wie lange wir schon zusammen sind</h1>
   <div id="timer">Lädt...</div>
   <a href="index.html" class="btn-back">Zurück</a>
 
   <script>
     function updateTimer() {
-      // Startdatum (2. Oktober 2024)
-      const startDate = new Date(2024, 9, 2, 0, 0, 0); // Monate zählen ab 0, daher 9 = Oktober
-
+      const startDate = new Date(2024, 9, 2, 0, 0, 0); // 2. Oktober 2024 (Monat = 9)
       const now = new Date();
-      let diff = now - startDate; // Differenz in Millisekunden
+      let diff = now - startDate;
 
       if (diff < 0) {
         document.getElementById('timer').textContent = "Das Datum ist noch nicht erreicht!";
         return;
       }
 
-      // Berechnung der Tage, Stunden, Minuten, Sekunden
       const seconds = Math.floor(diff / 1000) % 60;
       const minutes = Math.floor(diff / (1000 * 60)) % 60;
       const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
       document.getElementById('timer').textContent =
-        `${days} Tage, ${hours.toString().padStart(2,'0')} Stunden, ${minutes.toString().padStart(2,'0')} Minuten, ${seconds.toString().padStart(2,'0')} Sekunden`;
+        `${days} Tage, ${hours.toString().padStart(2, '0')} Stunden, ${minutes.toString().padStart(2, '0')} Minuten, ${seconds.toString().padStart(2, '0')} Sekunden`;
+    }
+
+    function toggleMode() {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    }
+
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark');
     }
 
     updateTimer();

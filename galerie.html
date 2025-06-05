@@ -6,12 +6,23 @@
   <title>Galerie</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Open+Sans&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --bg-color: #fff0f6;
+      --text-color: #333;
+      --box-color: white;
+    }
     body {
       font-family: 'Open Sans', sans-serif;
-      background-color: #fff0f6;
-      color: #333;
+      background-color: var(--bg-color);
+      color: var(--text-color);
       text-align: center;
       margin: 40px 20px;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.dark {
+      --bg-color: #121212;
+      --text-color: #eee;
+      --box-color: #1e1e1e;
     }
     h1 {
       font-family: 'Poppins', sans-serif;
@@ -32,6 +43,7 @@
       box-shadow: 0 4px 8px rgba(214, 51, 108, 0.3);
       transition: transform 0.3s ease;
       cursor: pointer;
+      background-color: var(--box-color);
     }
     .gallery img:hover {
       transform: scale(1.05);
@@ -49,16 +61,47 @@
     .btn-back:hover {
       background-color: #ff69b4;
     }
+    .mode-toggle {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      background: #333;
+      color: white;
+      cursor: pointer;
+      z-index: 999;
+    }
   </style>
 </head>
 <body>
+  <button class="mode-toggle" onclick="toggleMode()">🌙/☀️</button>
+
   <h1>Galerie</h1>
   <div class="gallery">
     <img src="bild1.jpg" alt="Bild 1" />
     <img src="bild2.jpg" alt="Bild 2" />
     <img src="bild3.jpg" alt="Bild 3" />
+    <img src="bild4.jpg" alt="Bild 4" />
+    <img src="bild5.jpg" alt="Bild 5" />
+    <img src="bild6.jpg" alt="Bild 6" />
+    <img src="bild7.jpg" alt="Bild 7" />
+    <img src="bild8.jpg" alt="Bild 8" />
+    <img src="bild9.jpg" alt="Bild 9" />
+    <img src="bild10.jpg" alt="Bild 10" />
     <!-- Weitere Bilder hinzufügen -->
   </div>
   <a href="index.html" class="btn-back">Zurück</a>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    }
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark');
+    }
+  </script>
 </body>
 </html>

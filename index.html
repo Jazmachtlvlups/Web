@@ -6,12 +6,23 @@
   <title>Für meine Freundin</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Open+Sans&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --bg-color: #fff0f6;
+      --text-color: #333;
+    }
     body {
       font-family: 'Open Sans', sans-serif;
-      background-color: #fff0f6;
-      color: #333;
+      background-color: var(--bg-color);
+      color: var(--text-color);
       text-align: center;
       margin-top: 60px;
+      position: relative;
+      overflow-x: hidden;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.dark {
+      --bg-color: #121212;
+      --text-color: #eee;
     }
     .container {
       max-width: 600px;
@@ -21,9 +32,13 @@
       border-radius: 10px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
+    body.dark .container {
+      background: #1e1e1e;
+      box-shadow: 0 2px 10px rgba(255,255,255,0.05);
+    }
     h1 {
       font-family: 'Poppins', sans-serif;
-      color: #d6336c;
+      color: #840be7;
       margin-bottom: 10px;
     }
     p {
@@ -37,7 +52,7 @@
       flex-wrap: wrap;
     }
     .btn {
-      background-color: #d6336c;
+      background-color: #840be7;
       color: white;
       border: none;
       padding: 12px 25px;
@@ -51,12 +66,6 @@
     .btn:hover {
       background-color: #ff69b4;
     }
-
-    body {
-      position: relative;
-      overflow-x: hidden;
-    }
-
     .heart {
       position: fixed;
       bottom: -50px;
@@ -66,7 +75,6 @@
       animation-timing-function: linear;
       animation-iteration-count: infinite;
     }
-
     @keyframes floatUp {
       0% {
         transform: translateY(0) translateX(0) rotate(0deg);
@@ -77,9 +85,23 @@
         opacity: 0;
       }
     }
+    .mode-toggle {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      background: #333;
+      color: white;
+      cursor: pointer;
+      z-index: 999;
+    }
   </style>
 </head>
 <body>
+  <button class="mode-toggle" onclick="toggleMode()">🌙/☀️</button>
+
   <div class="container">
     <h1>Hallo meine Liebe! 💖</h1>
     <p>Ich habe diese Webseite nur für dich gemacht. Schön, dass es dich gibt! 🌸</p>
@@ -88,20 +110,28 @@
       <a href="galerie.html" class="btn">Galerie</a>
       <a href="fuerdich.html" class="btn">Für Dich</a>
       <a href="timer.html" class="btn">Timer</a>
-
-        <!-- animierte Herzen -->
-  <div class="heart" style="left:10%; animation-duration: 10s;">❤️</div>
-  <div class="heart" style="left:30%; animation-duration: 12s; font-size: 30px;">❤️</div>
-  <div class="heart" style="left:50%; animation-duration: 8s; font-size: 20px;">❤️</div>
-  <div class="heart" style="left:70%; animation-duration: 14s; font-size: 25px;">❤️</div>
-  <div class="heart" style="left:90%; animation-duration: 11s; font-size: 22px;">❤️</div>
-
-  <audio autoplay loop>
-  <source src="lieblingslied.mp3" type="audio/mpeg" />
-  Dein Browser unterstützt keine Audio-Wiedergabe.
-</audio>
-</body>
+      <a href="guestbook.html" class="btn">Gästebuch</a>
+      <a href="zitate.html" class="btn">Zitate</a>
     </div>
   </div>
+
+  <!-- Animierte Herzen -->
+  <div class="heart" style="left:10%; animation-duration: 10s;">🦋</div>
+  <div class="heart" style="left:30%; animation-duration: 12s; font-size: 30px;">❤️</div>
+  <div class="heart" style="left:50%; animation-duration: 8s; font-size: 20px;">🦋</div>
+  <div class="heart" style="left:70%; animation-duration: 14s; font-size: 25px;">❤️</div>
+  <div class="heart" style="left:90%; animation-duration: 11s; font-size: 22px;">🦋</div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    }
+
+    // Beim Laden Theme anwenden
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark');
+    }
+  </script>
 </body>
 </html>
